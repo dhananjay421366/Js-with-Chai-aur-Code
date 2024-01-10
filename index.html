@@ -5,59 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .btns {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-      }
-      button {
-        background-color: rgb(90, 207, 180);
-        height: 30px;
-        width: 60px;
-        border-radius: 20px;
+      table,
+      th,
+      td {
         border: 2px solid;
       }
-      #start {
-        margin-right: 10px;
+      .project {
+        background-color: #1c1c1c;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .color {
+        color: aliceblue;
+        display: flex;
+        flex-direction: row;
       }
     </style>
   </head>
   <body style="background-color: gray">
-    <h1 style="text-align: center">
-      Start should change the background color every second
-    </h1>
-    <div class="btns">
-      <button id="start">start</button>
-      <button id="stop">stop</button>
+    <div class="project">
+      <div class="insert" id="insert">
+        <div class="key">Press the KeyBoard key and watch magic</div>
+      </div>
     </div>
   </body>
   <script>
-    const randomColor = function () {
-      const hex = "0123456789ABCDEF";
-      let color = "#";
-      for (let i = 0; i < 6; i++) {
-        color += hex[Math.floor(Math.random() * 16)];
-        // console.log(color);
-      }
-      return color;
-    };
-    // console.log(randomColor());
-    let intervalId;
-    const startColorChange = function () {
-      if (!intervalId) {
-   intervalId = setInterval(function () {
-        document.body.style.backgroundColor = randomColor();
-      }, 1000);
-      }
-    };
-    const stopColorChange = function () {
-      clearInterval(intervalId);
-      intervalId = null
-    };
-    document
-      .getElementById("start")
-      .addEventListener("click", startColorChange);
-
-    document.getElementById("stop").addEventListener("click", stopColorChange);
+    const insret = document.getElementById("insert");
+    window.addEventListener("keydown", function (e) {
+      insret.innerHTML = `
+    <div class="color"> 
+        <table>
+  <tr>
+    <th>Key</th>
+    <th> keyCode</th>
+    <th>code</th>
+  </tr>
+  <tr>
+    <td>${e.key}</td>
+    <td>${e.keyCode}</td>
+    <td>${e.code}</td>
+  </tr>
+ 
+</table>
+        </div>
+    `;
+    });
   </script>
 </html>
