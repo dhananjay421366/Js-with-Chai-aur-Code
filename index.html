@@ -5,29 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .btns{
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
-       button{
+      .btns {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+      button {
         background-color: rgb(90, 207, 180);
-           height: 30px;
-           width: 60px;
-           border-radius: 20px;
-           border: 2px solid;
-        }
-        #start{
-          margin-right: 10px;
-        }
+        height: 30px;
+        width: 60px;
+        border-radius: 20px;
+        border: 2px solid;
+      }
+      #start {
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body style="background-color: gray">
-    <h1 style="text-align: center;">Start should change the background color every second</h1>
-   <div class="btns">
-    <button id="start">start</button>
-    <button id="stop">stop</button>
-   </div>
+    <h1 style="text-align: center">
+      Start should change the background color every second
+    </h1>
+    <div class="btns">
+      <button id="start">start</button>
+      <button id="stop">stop</button>
+    </div>
   </body>
   <script>
     const randomColor = function () {
@@ -41,17 +43,21 @@
     };
     // console.log(randomColor());
     let intervalId;
-  const startColorChange = function(){
-  intervalId =  setInterval(function(){
+    const startColorChange = function () {
+      if (!intervalId) {
+   intervalId = setInterval(function () {
         document.body.style.backgroundColor = randomColor();
+      }, 1000);
+      }
+    };
+    const stopColorChange = function () {
+      clearInterval(intervalId);
+      intervalId = null
+    };
+    document
+      .getElementById("start")
+      .addEventListener("click", startColorChange);
 
-    },1000)
-  }
-  const stopColorChange = function(){
-    clearInterval(intervalId);
-  }
-    document.getElementById('start').addEventListener('click',startColorChange)
-
-    document.getElementById('stop').addEventListener('click',stopColorChange)
+    document.getElementById("stop").addEventListener("click", stopColorChange);
   </script>
 </html>
